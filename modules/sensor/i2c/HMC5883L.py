@@ -76,7 +76,7 @@ if __name__=="__main__":
   l = HMC5883L()
   while True:
     l.read()
-    print("{:+.1f}, {:+.1f}, {:+.1f}, {:+.1f}, {:+.1f}, {:+.1f}".format(
+    print("{:+.1f}, {:+.1f}, {:+.1f}".format(
       l.values['mag'][0],
       l.values['mag'][1],
       l.values['mag'][2],
