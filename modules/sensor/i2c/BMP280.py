@@ -58,7 +58,7 @@ CTRL_MEAS = (OSRS_T << 5) + (OSRS_P << 2) + POWER_MODE # combine bits for ctrl_m
 class BMP280(i2c.i2c):
 
   #address
-  SENSOR_ADDRESS = 0x77
+  SENSOR_ADDRESS = 0x76
 
   #for reset
   RESET_ADDRESS = 0xE0
@@ -78,7 +78,7 @@ class BMP280(i2c.i2c):
 
   def init_sensor(self):
     
-    # BMP280 address, 0x77
+    # BMP280 address, 0x76
     # Read data back from 0x88(136), 24 bytes
     b1 = self.bus.read_i2c_block_data(self.SENSOR_ADDRESS, 0x88, 24)
 

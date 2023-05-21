@@ -139,6 +139,8 @@ class SensorI2C(Sensor):
     #acc + gyro
     if self.available_sensors['MOTION']['LSM6DS']:
       self.sensor['i2c_imu'] = self.sensor_lsm6ds
+    if self.available_sensors['MOTION']['MPU6050']:
+      self.sensor['i2c_imu'] = self.sensor_mpu6050
     #acc + mag
     if self.available_sensors['MOTION']['ISM330DHCX']:
       self.sensor['i2c_imu'] = self.sensor_ism330dhcx
@@ -1161,6 +1163,16 @@ class SensorI2C(Sensor):
       self.sensor_lsm6ds.gyro_range = adafruit_lsm6ds.GyroRange.RANGE_125_DPS
       self.sensor_lsm6ds.accelerometer_data_rate = adafruit_lsm6ds.Rate.RATE_12_5_HZ
       self.sensor_lsm6ds.gyro_data_rate = adafruit_lsm6ds.Rate.RATE_12_5_HZ
+      return True
+    except:
+      return False
+  
+  def detect_motion_mpu6050(self):
+    try:
+      import board
+      import busio
+      from .i2c.mpu6050 import MPU6050
+      self.sensor_mpu6050 = MPU6050(busio.I2C(board.SCL, board.SDA))
       return True
     except:
       return False
