@@ -34,7 +34,7 @@ class MPU6050(i2c.i2c):
   TEST_VALUE = (None)
   
   elements = ()
-  elements_vec = ('acc', 'gyro')
+  elements_vec = ('acc_raw', 'gyro_raw')
 
   def reset_value(self):
     for key in self.elements:
@@ -63,14 +63,14 @@ class MPU6050(i2c.i2c):
     x = self.read_raw_data(ACCEL_XOUT_H)
     y = self.read_raw_data(ACCEL_YOUT_H)
     z = self.read_raw_data(ACCEL_ZOUT_H)
-    self.values['acc'] = [x, y, z]
+    self.values['acc_raw'] = [x, y, z]
     
   def read_gyro(self):
     #Read the gyro and return the raw x, y and z axis values.
     x = self.read_raw_data(GYRO_XOUT_H)
     y = self.read_raw_data(GYRO_YOUT_H)
     z = self.read_raw_data(GYRO_ZOUT_H)
-    self.values['gyro'] = [x, y, z]
+    self.values['gyro_raw'] = [x, y, z]
 
   def read_raw_data(self,addr):
 	  #Accelerometer and Gyro value are 16-bit
@@ -91,12 +91,12 @@ if __name__=="__main__":
   while True:
     l.read()
     print("{:+.1f}, {:+.1f}, {:+.1f}, {:+.1f}, {:+.1f}, {:+.1f}".format(
-      l.values['acc'][0],
-      l.values['acc'][1],
-      l.values['acc'][2],
-      l.values['gyro'][0],
-      l.values['gyro'][1],
-      l.values['gyro'][2],
+      l.values['acc_raw'][0],
+      l.values['acc_raw'][1],
+      l.values['acc_raw'][2],
+      l.values['gyro_raw'][0],
+      l.values['gyro_raw'][1],
+      l.values['gyro_raw'][2],
       ))
     time.sleep(0.1)
 
