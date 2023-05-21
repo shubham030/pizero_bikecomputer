@@ -1187,7 +1187,8 @@ class SensorI2C(Sensor):
   
   def detect_motion_mpu6050(self):
     try:
-      from i2c.MPU6050 import MPU6050
+      from .i2c.MPU6050 import MPU6050
+      from .i2c import MPU6050
       self.sensor_mpu6050 = MPU6050()
       return True
     except Exception as e:
