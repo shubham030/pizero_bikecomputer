@@ -1190,7 +1190,7 @@ class SensorI2C(Sensor):
       import board
       import busio
       from .i2c.MPU6050 import MPU6050
-      self.sensor_mpu6050 = MPU6050(busio.I2C(board.SCL, board.SDA))
+      self.sensor_mpu6050 = MPU6050()
       return True
     except Exception as e:
       print(e)
@@ -1200,7 +1200,7 @@ class SensorI2C(Sensor):
       import board
       import busio
       from .i2c.HMC5883L import HMC5883L
-      self.sensor_hmc5883l = HMC5883L(busio.I2C(board.SCL, board.SDA))
+      self.sensor_hmc5883l = HMC5883L()
       return True
     except Exception as e:
       print(e)
