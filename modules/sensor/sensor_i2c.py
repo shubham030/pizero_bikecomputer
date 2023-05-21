@@ -590,7 +590,7 @@ class SensorI2C(Sensor):
         self.sensor['i2c_mag'].read_mag()
         self.values['mag_raw'] = np.array(self.sensor['i2c_mag'].values['mag'])
       if self.available_sensors['MOTION']['HMC5883L']:
-        self.values['mag_raw'] = np.array(self.sensor['i2c_mag'].magnetic)
+        self.values['mag_raw'] = np.array(self.sensor['i2c_mag'].mag)
     except:
       return
     self.values['mag_raw'] = self.change_axis(self.values['mag_raw'], is_mag=True)
@@ -1187,8 +1187,6 @@ class SensorI2C(Sensor):
   
   def detect_motion_mpu6050(self):
     try:
-      import board
-      import busio
       from .i2c.MPU6050 import MPU6050
       self.sensor_mpu6050 = MPU6050()
       return True
@@ -1197,8 +1195,6 @@ class SensorI2C(Sensor):
       return False
   def detect_motion_hmc5883l(self):
     try:
-      import board
-      import busio
       from .i2c.HMC5883L import HMC5883L
       self.sensor_hmc5883l = HMC5883L()
       return True
