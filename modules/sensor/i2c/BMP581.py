@@ -89,8 +89,8 @@ class BMP581(i2c.i2c):
   SENSOR_ADDRESS = 0x47 # or 0x46
 
   #for reset
-  RESET_ADDRESS = 0x7E
-  RESET_VALUE = 0xB6
+  RESET_ADDRESS = 0
+  RESET_VALUE = 0
 
   #for reading value
   VALUE_ADDRESS = 0x1D

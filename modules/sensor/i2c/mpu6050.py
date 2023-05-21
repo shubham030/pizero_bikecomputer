@@ -25,6 +25,10 @@ class MPU6050(i2c.i2c):
   #address
   SENSOR_ADDRESS = 0x68
 
+  #for reset
+  RESET_ADDRESS = 0
+  RESET_VALUE = 0
+
   #for test
   TEST_ADDRESS = None
   TEST_VALUE = (None)
@@ -52,7 +56,7 @@ class MPU6050(i2c.i2c):
 
   def read(self):
     self.read_acc()
-    self.read_mag()
+    self.read_gyro()
 
   def read_acc(self):
     #Read the accelerometer and return the x, y and z acceleration as a vector in Gs.

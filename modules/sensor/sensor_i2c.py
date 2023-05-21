@@ -141,6 +141,9 @@ class SensorI2C(Sensor):
       self.sensor['i2c_imu'] = self.sensor_lsm6ds
     if self.available_sensors['MOTION']['MPU6050']:
       self.sensor['i2c_imu'] = self.sensor_mpu6050
+    #mag
+    if self.available_sensors['MOTION']['HMC5883L']:
+      self.sensor['i2c_mag'] = self.sensor_hmc5883l
     #acc + mag
     if self.available_sensors['MOTION']['ISM330DHCX']:
       self.sensor['i2c_imu'] = self.sensor_ism330dhcx
@@ -247,6 +250,7 @@ class SensorI2C(Sensor):
     self.available_sensors['MOTION']['LIS3MDL'] = self.detect_motion_lis3mdl()
     self.available_sensors['MOTION']['LSM6DS'] = self.detect_motion_lsm6ds()
     self.available_sensors['MOTION']['MPU6050'] = self.detect_motion_mpu6050()
+    self.available_sensors['MOTION']['HMC5883L'] = self.detect_motion_hmc5883l()
     self.available_sensors['MOTION']['ISM330DHCX'] = self.detect_motion_ism330dhcx()
     self.available_sensors['MOTION']['MMC5983MA'] = self.detect_motion_mmc5983ma()
     self.available_sensors['MOTION']['LSM9DS1'] = self.detect_motion_lsm9ds1()
@@ -291,6 +295,13 @@ class SensorI2C(Sensor):
       self.motion_sensor['GYRO'] = True
       self.motion_sensor['MAG'] = True
       self.sensor_label['MAG'] = 'ICM20948'
+    if self.available_sensors['MOTION']['HMC5883L']:
+      self.motion_sensor['MAG'] = True
+      self.sensor_label['MAG'] = 'HMC5883L'
+    if self.available_sensors['MOTION']['MPU6050']:
+      self.motion_sensor['ACC'] = True
+      self.motion_sensor['GYRO'] = True
+      self.sensor_label['MAG'] = 'MPU6050'
 
     #light sensors
     self.available_sensors['LIGHT']['TCS3472'] = self.detect_light_tcs3472()
@@ -1172,12 +1183,20 @@ class SensorI2C(Sensor):
     try:
       import board
       import busio
-      from .i2c.mpu6050 import MPU6050
+      from .i2c.MPU6050 import MPU6050
       self.sensor_mpu6050 = MPU6050(busio.I2C(board.SCL, board.SDA))
       return True
     except:
       return False
-  
+  def detect_motion_hmc5883l(self):
+    try:
+      import board
+      import busio
+      from .i2c.HMC5883L import HMC5883L
+      self.sensor_hmc5883l = HMC5883L(busio.I2C(board.SCL, board.SDA))
+      return True
+    except:
+      return False
   def detect_motion_ism330dhcx(self):
     try:
       import board
