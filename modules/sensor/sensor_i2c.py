@@ -246,6 +246,7 @@ class SensorI2C(Sensor):
     self.available_sensors['MOTION']['LSM303_ORIG'] = self.detect_motion_lsm303_orig()
     self.available_sensors['MOTION']['LIS3MDL'] = self.detect_motion_lis3mdl()
     self.available_sensors['MOTION']['LSM6DS'] = self.detect_motion_lsm6ds()
+    self.available_sensors['MOTION']['MPU6050'] = self.detect_motion_mpu6050()
     self.available_sensors['MOTION']['ISM330DHCX'] = self.detect_motion_ism330dhcx()
     self.available_sensors['MOTION']['MMC5983MA'] = self.detect_motion_mmc5983ma()
     self.available_sensors['MOTION']['LSM9DS1'] = self.detect_motion_lsm9ds1()
