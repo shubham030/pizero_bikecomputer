@@ -217,7 +217,6 @@ class SensorI2C(Sensor):
       while count < sampling_num:
         self.read_acc(return_raw=True)
         self.read_gyro(return_raw=True)
-        print(self.values['acc_raw'], self.values['gyro_raw'])
         acc_list.append(math.atan2(self.values['acc_raw'][X], self.values['acc_raw'][Z]))
         gyro_list.append(self.values['gyro_raw'][Y])
         count += 1
@@ -509,7 +508,6 @@ class SensorI2C(Sensor):
       elif self.available_sensors['MOTION']['MPU6050']:
         self.sensor['i2c_imu'].read_acc()
         self.values['acc_raw'] = np.array(self.sensor['i2c_imu'].values['acc_raw'])/G
-        print('acc_raw',self.values['acc_raw'])
     except:
       return
     self.values['acc_raw'] = self.change_axis(self.values['acc_raw'])
@@ -538,7 +536,6 @@ class SensorI2C(Sensor):
       elif self.available_sensors['MOTION']['MPU6050']:
         self.sensor['i2c_imu'].read_gyro()
         self.values['gyro_raw'] = np.array(self.sensor['i2c_imu'].values['gyro_raw'])
-        print('gyro',self.values['gyro_raw'])
     except:
       return
     self.values['gyro_raw'] = self.change_axis(self.values['gyro_raw'])
@@ -598,7 +595,6 @@ class SensorI2C(Sensor):
       if self.available_sensors['MOTION']['HMC5883L']:
         self.sensor['i2c_mag'].read_mag()
         self.values['mag'] = np.array(self.sensor['i2c_mag'].values['mag'])
-        print('mag',self.values['mag'])
     except:
       return
     self.values['mag_raw'] = self.change_axis(self.values['mag_raw'], is_mag=True)
