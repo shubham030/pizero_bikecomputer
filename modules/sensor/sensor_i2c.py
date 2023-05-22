@@ -217,6 +217,7 @@ class SensorI2C(Sensor):
       while count < sampling_num:
         self.read_acc(return_raw=True)
         self.read_gyro(return_raw=True)
+        print(self.values['acc_raw'], self.values['gyro_raw'])
         acc_list.append(math.atan2(self.values['acc_raw'][X], self.values['acc_raw'][Z]))
         gyro_list.append(self.values['gyro_raw'][Y])
         count += 1
@@ -301,6 +302,7 @@ class SensorI2C(Sensor):
     if self.available_sensors['MOTION']['MPU6050']:
       self.motion_sensor['ACC'] = True
       self.motion_sensor['GYRO'] = True
+      self.sensor_label['ACC'] = 'MPU6050'
       self.sensor_label['GYRO'] = 'MPU6050'
 
     #light sensors
@@ -505,7 +507,7 @@ class SensorI2C(Sensor):
       elif self.available_sensors['MOTION']['BMX160']:
         self.values['acc_raw'] = np.array(self.sensor['i2c_imu'].accel)/G
       elif self.available_sensors['MOTION']['MPU6050']:
-        self.values['acc_raw'] = np.array(self.sensor['i2c_imu'].acceleration)/G
+        self.values['acc_raw'] = np.array(self.sensor['i2c_imu'].values['acc_raw'])/G
     except:
       return
     self.values['acc_raw'] = self.change_axis(self.values['acc_raw'])
@@ -532,7 +534,7 @@ class SensorI2C(Sensor):
         #sometimes BNO055 returns [None, None, None] array occurs
         self.values['gyro_raw'] = np.array(self.sensor['i2c_imu'].gyro) / 1.0
       elif self.available_sensors['MOTION']['MPU6050']:
-        self.values['gyro_raw'] = np.array(self.sensor['i2c_imu'].gyro)
+        self.values['gyro_raw'] = np.array(self.sensor['i2c_imu'].values['gyro_raw'])
     except:
       return
     self.values['gyro_raw'] = self.change_axis(self.values['gyro_raw'])
@@ -590,7 +592,7 @@ class SensorI2C(Sensor):
         self.sensor['i2c_mag'].read_mag()
         self.values['mag_raw'] = np.array(self.sensor['i2c_mag'].values['mag'])
       if self.available_sensors['MOTION']['HMC5883L']:
-        self.values['mag_raw'] = np.array(self.sensor['i2c_mag'].mag)
+        self.values['mag_raw'] = np.array(self.sensor['i2c_mag'].values['mag_raw'])
     except:
       return
     self.values['mag_raw'] = self.change_axis(self.values['mag_raw'], is_mag=True)
@@ -1188,7 +1190,7 @@ class SensorI2C(Sensor):
   def detect_motion_mpu6050(self):
     try:
       from .i2c.MPU6050 import MPU6050
-      from .i2c import MPU6050
+      
       self.sensor_mpu6050 = MPU6050()
       return True
     except Exception as e:
