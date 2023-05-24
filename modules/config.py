@@ -112,7 +112,7 @@ class Config():
   
   #map setting
   #default map (can overwrite in settings.conf)
-  G_MAP = 'toner'
+  G_MAP = 'openstreetmap'
   G_MAP_CONFIG = {
     #basic map
     'toner': {
