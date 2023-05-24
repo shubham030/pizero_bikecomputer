@@ -38,7 +38,8 @@ class ILI9341():
         (im_array.shape[1]*8, im_array.shape[0]),
         (~im_array).tobytes()
       )
-        image = image.convert("RGB")
+        image_resized = image.resize((self.display.width, self.display.height))
+        image = image_resized.convert("RGB")
         self.display.image(image)
       
 
