@@ -103,7 +103,6 @@ class Display(Sensor):
     elif self.config.G_DISPLAY in ('Papirus', 'DFRobot_RPi_Display'):
       self.display.update(buf)
     elif self.config.G_DISPLAY == 'ILI9341':
-      print('updating buf',buf)
       self.display.update(buf)
 
   def screen_flash_long(self):
