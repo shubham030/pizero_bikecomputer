@@ -3,6 +3,7 @@ import busio
 import digitalio
 import board
 
+from PIL import Image
 from adafruit_rgb_display import color565
 import adafruit_rgb_display.ili9341 as ili9341
 
@@ -30,11 +31,14 @@ class ILI9341():
     def clear(self):
         self.display.fill(0)
   
-    def update(self,data):
-        print('updating display',data)
+    def update(self,im_array):
         if self.config.G_QUIT:
             return
-        self.display.fill(0)
+        self.display.image(Image.frombytes(
+        "1", 
+        (im_array.shape[1]*8, im_array.shape[0]),
+        (~im_array).tobytes()
+      ))
       
 
       
