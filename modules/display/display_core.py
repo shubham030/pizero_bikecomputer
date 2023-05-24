@@ -42,7 +42,7 @@ class Display(Sensor):
       self.display = DFRobotRPiDisplay(self.config)
       self.send_display = True
     elif self.config.G_DISPLAY == 'ILI9341':
-      from .ili9341_display import ILI9341Display
+      from .ili9341 import ILI9341Display
       self.display = ILI9341Display(self.config)
       self.send_display = True
 
