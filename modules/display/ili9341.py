@@ -34,11 +34,8 @@ class ILI9341():
     def update(self,im_array):
         if self.config.G_QUIT:
             return
-        image = Image.frombytes("1", 
-        (im_array.shape[1]*8, im_array.shape[0]),
-        (~im_array).tobytes()
-      )
-        image_resized = image.resize((self.display.width, self.display.height))
+        image_pil = Image.fromarray(im_array)
+        image_resized = image_pil.resize((self.display.width, self.display.height))
         image = image_resized.convert("RGB")
         self.display.image(image)
       
