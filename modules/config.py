@@ -443,7 +443,7 @@ class Config():
   G_FULLSCREEN = False
 
     #display type (overwritten with setting.conf)
-  G_DISPLAY = 'None' #PiTFT, MIP, Papirus, MIP_Sharp
+  G_DISPLAY = 'ILI9341' #PiTFT, MIP, Papirus, MIP_Sharp, ILI9341, None
 
   #screen size (need to add when adding new device)
   G_AVAILABLE_DISPLAY = {

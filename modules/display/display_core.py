@@ -41,6 +41,10 @@ class Display(Sensor):
       from .dfrobot_rpi_display import DFRobotRPiDisplay
       self.display = DFRobotRPiDisplay(self.config)
       self.send_display = True
+    elif self.config.G_DISPLAY == 'ILI9341':
+      from .ili9341_display import ILI9341Display
+      self.display = ILI9341Display(self.config)
+      self.send_display = True
 
   def detect_display(self):
     hatdir = '/proc/device-tree/hat'
@@ -97,6 +101,9 @@ class Display(Sensor):
     elif self.config.G_DISPLAY in ('MIP', 'MIP_640', 'MIP_Sharp', 'MIP_Sharp_320'):
       self.display.update(buf, direct_update=False)
     elif self.config.G_DISPLAY in ('Papirus', 'DFRobot_RPi_Display'):
+      self.display.update(buf)
+    elif self.config.G_DISPLAY == 'ILI9341':
+      print('updating buf',buf)
       self.display.update(buf)
 
   def screen_flash_long(self):
