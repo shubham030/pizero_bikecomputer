@@ -454,7 +454,8 @@ class Config():
     'MIP_Sharp': {'size':(400, 240),'touch':False, 'color': False},
     'MIP_Sharp_320': {'size':(320, 240),'touch':False, 'color': False},
     'Papirus': {'size':(264, 176),'touch':False, 'color': False},
-    'DFRobot_RPi_Display': {'size':(250, 122),'touch':False, 'color': False}
+    'DFRobot_RPi_Display': {'size':(250, 122),'touch':False, 'color': False},
+    'ILI9341': {'size':(320, 240),'touch':False, 'color': True},
   }
   G_WIDTH = 320
   G_HEIGHT = 240
