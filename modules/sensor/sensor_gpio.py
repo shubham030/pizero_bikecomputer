@@ -38,7 +38,7 @@ class SensorGPIO(Sensor):
 
     while True:
       sw_status = GPIO.input(channel)
-
+      print('GPIO: ', channel, sw_status)
       if sw_status == 0:
         sw_counter = sw_counter + 1
         if sw_counter >= self.config.button_config.G_BUTTON_LONG_PRESS * self.interval_inv:
@@ -50,7 +50,7 @@ class SensorGPIO(Sensor):
       time.sleep(self.interval)
 
   def update(self):
-    if _SENSOR_RPiGPIO and self.config.G_DISPLAY in ['PiTFT', 'Papirus', 'DFRobot_RPi_Display']:
+    if _SENSOR_RPiGPIO and self.config.G_DISPLAY in ['ILI9341','PiTFT', 'Papirus', 'DFRobot_RPi_Display']:
       for key in self.config.button_config.G_BUTTON_DEF[self.config.G_DISPLAY]['MAIN'].keys():
         GPIO.add_event_detect(key, GPIO.FALLING, callback=self.my_callback, bouncetime=500)
 
