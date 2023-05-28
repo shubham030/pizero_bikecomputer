@@ -594,7 +594,7 @@ class SensorI2C(Sensor):
         self.values['mag_raw'] = np.array(self.sensor['i2c_mag'].values['mag_raw'])
       if self.available_sensors['MOTION']['HMC5883L']:
         self.sensor['i2c_mag'].read_mag()
-        self.values['mag'] = np.array(self.sensor['i2c_mag'].values['mag'])
+        self.values['mag_raw'] = np.array(self.sensor['i2c_mag'].values['mag_raw'])
     except:
       return
     self.values['mag_raw'] = self.change_axis(self.values['mag_raw'], is_mag=True)
