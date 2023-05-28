@@ -591,7 +591,7 @@ class SensorI2C(Sensor):
         self.values['mag_raw'] = np.array(self.sensor['i2c_imu'].magnetic) / 1.0
       if self.available_sensors['MOTION']['MMC5983MA']:
         self.sensor['i2c_mag'].read_mag()
-        self.values['mag_raw'] = np.array(self.sensor['i2c_mag'].values['mag'])
+        self.values['mag_raw'] = np.array(self.sensor['i2c_mag'].values['mag_raw'])
       if self.available_sensors['MOTION']['HMC5883L']:
         self.sensor['i2c_mag'].read_mag()
         self.values['mag'] = np.array(self.sensor['i2c_mag'].values['mag'])

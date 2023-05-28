@@ -30,7 +30,7 @@ class HMC5883L(i2c.i2c):
   TEST_VALUE = (None)
   
   elements = ()
-  elements_vec = ('mag')
+  elements_vec = ('mag_raw')
 
   def reset_value(self):
     for key in self.elements:
@@ -56,7 +56,7 @@ class HMC5883L(i2c.i2c):
     x = self.read_raw_data(X_axis_H)
     y = self.read_raw_data(Y_axis_H)
     z = self.read_raw_data(Z_axis_H)
-    self.values['mag'] = [x, y, z]
+    self.values['mag_raw'] = [x, y, z]
     
   def read_raw_data(self,addr):
     #Read raw 16-bit value
@@ -77,9 +77,9 @@ if __name__=="__main__":
   while True:
     l.read()
     print("{:+.1f}, {:+.1f}, {:+.1f}".format(
-      l.values['mag'][0],
-      l.values['mag'][1],
-      l.values['mag'][2],
+      l.values['mag_raw'][0],
+      l.values['mag_raw'][1],
+      l.values['mag_raw'][2],
       ))
     time.sleep(0.1)
 
