@@ -24,7 +24,7 @@ class SensorGPIO(Sensor):
   mode = 'MAIN'
 
   def sensor_init(self):
-    if _SENSOR_RPiGPIO and self.config.G_DISPLAY in ['PiTFT', 'Papirus', 'DFRobot_RPi_Display']:
+    if _SENSOR_RPiGPIO and self.config.G_DISPLAY in ['PiTFT','ILI9341', 'Papirus', 'DFRobot_RPi_Display']:
       for key in self.config.button_config.G_BUTTON_DEF[self.config.G_DISPLAY]['MAIN'].keys():
         self.buttonState[key] = False
         self.oldButtonState[key] = True
