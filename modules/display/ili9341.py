@@ -26,7 +26,7 @@ class ILI9341():
         # Setup SPI bus using hardware SPI:
         spi = busio.SPI(clock=board.SCK, MOSI=board.MOSI, MISO=board.MISO)
         # Create the ILI9341 display:
-        self.display = ili9341.ILI9341(spi, cs=cs,dc=dc,rst=rs, width=240, height=320,baudrate=baudrate)
+        self.display = ili9341.ILI9341(spi, cs=cs,dc=dc,rst=rs, width=self.display.width, height=self.display.height,baudrate=baudrate)
     
     def clear(self):
         self.display.fill(0)
