@@ -10,6 +10,22 @@ class Button_Config():
   # call from SensorGPIO.my_callback(self, channel)
   # number is from GPIO.setmode(GPIO.BCM)
   G_BUTTON_DEF = {
+    'ILI9341':{
+      'MAIN':{
+        5:('scroll_prev', ''),
+        6:('count_laps', 'reset_count'),
+        12:('brightness_control', ''),
+        13:('start_and_stop_manual', ''),
+        16:('scroll_next', 'enter_menu'),
+      },
+      'MENU':{
+        5:('back_menu', ''),
+        6:('', ''),
+        12:('press_space', ''),
+        13:('press_shift_tab', ''),
+        16:('press_tab', ''),
+      },
+    },
     'PiTFT':{
       'MAIN':{
         5:('scroll_prev', ''),
