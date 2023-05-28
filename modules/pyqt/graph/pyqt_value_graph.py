@@ -168,7 +168,7 @@ class AccelerationGraphWidget(ScreenWidget):
     self.max_width = 3
 
   def set_font_size(self, length):
-    self.font_size = int(length / 7)
+    self.font_size = int(length / 15)
     self.set_minimum_size()
 
   async def update_extra(self):
@@ -272,7 +272,7 @@ class AltitudeGraphWidget(ScreenWidget):
     self.max_width = 3
 
   def set_font_size(self, length):
-    self.font_size = int(length / 7)
+    self.font_size = int(length / 15)
     self.set_minimum_size()
 
   async def update_extra(self):
