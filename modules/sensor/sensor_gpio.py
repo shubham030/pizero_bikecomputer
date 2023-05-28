@@ -38,7 +38,6 @@ class SensorGPIO(Sensor):
 
     while True:
       sw_status = GPIO.input(channel)
-      print('GPIO: ', channel, sw_status)
       if sw_status == 0:
         sw_counter = sw_counter + 1
         if sw_counter >= self.config.button_config.G_BUTTON_LONG_PRESS * self.interval_inv:
